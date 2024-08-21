@@ -1,0 +1,503 @@
+
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Futbol API",
+      "description": "API for managing football leagues, teams, and players"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "schemes": ["http"],
+    "paths": {
+      "/players": {
+        "get": {
+          "summary": "Get all players",
+          "tags": ["Players"],
+          "responses": {
+            "200": {
+              "description": "List of all players",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Player"
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        },
+        "post": {
+          "summary": "Create a new player",
+          "tags": ["Players"],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Player object that needs to be added",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/PlayerInput"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Player created successfully",
+              "schema": {
+                "$ref": "#/definitions/Player"
+              }
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        }
+      },
+      "/players/{id}": {
+        "get": {
+          "summary": "Get a player by ID",
+          "tags": ["Players"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "integer",
+              "description": "Player ID"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Player details",
+              "schema": {
+                "$ref": "#/definitions/Player"
+              }
+            },
+            "404": {
+              "description": "Player not found"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        },
+        "put": {
+          "summary": "Update a player by ID",
+          "tags": ["Players"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "integer",
+              "description": "Player ID"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Player object that needs to be updated",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/PlayerInput"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Player updated successfully",
+              "schema": {
+                "$ref": "#/definitions/Player"
+              }
+            },
+            "404": {
+              "description": "Player not found"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete a player by ID",
+          "tags": ["Players"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "integer",
+              "description": "Player ID"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Player deleted successfully"
+            },
+            "404": {
+              "description": "Player not found"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        }
+      },
+      "/teams": {
+        "get": {
+          "summary": "Get all teams",
+          "tags": ["Teams"],
+          "responses": {
+            "200": {
+              "description": "List of all teams",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Team"
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        },
+        "post": {
+          "summary": "Create a new team",
+          "tags": ["Teams"],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Team object that needs to be added",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/TeamInput"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Team created successfully",
+              "schema": {
+                "$ref": "#/definitions/Team"
+              }
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        }
+      },
+      "/teams/{id}": {
+        "get": {
+          "summary": "Get a team by ID",
+          "tags": ["Teams"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "integer",
+              "description": "Team ID"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Team details",
+              "schema": {
+                "$ref": "#/definitions/Team"
+              }
+            },
+            "404": {
+              "description": "Team not found"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        },
+        "put": {
+          "summary": "Update a team by ID",
+          "tags": ["Teams"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "integer",
+              "description": "Team ID"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Team object that needs to be updated",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/TeamInput"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Team updated successfully",
+              "schema": {
+                "$ref": "#/definitions/Team"
+              }
+            },
+            "404": {
+              "description": "Team not found"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete a team by ID",
+          "tags": ["Teams"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "integer",
+              "description": "Team ID"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Team deleted successfully"
+            },
+            "404": {
+              "description": "Team not found"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        }
+      },
+      "/leagues": {
+        "get": {
+          "summary": "Get all leagues",
+          "tags": ["Leagues"],
+          "responses": {
+            "200": {
+              "description": "List of all leagues",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/League"
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        },
+        "post": {
+          "summary": "Create a new league",
+          "tags": ["Leagues"],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "League object that needs to be added",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/LeagueInput"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "League created successfully",
+              "schema": {
+                "$ref": "#/definitions/League"
+              }
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        }
+      },
+      "/leagues/{id}": {
+        "get": {
+          "summary": "Get a league by ID",
+          "tags": ["Leagues"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "integer",
+              "description": "League ID"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "League details",
+              "schema": {
+                "$ref": "#/definitions/League"
+              }
+            },
+            "404": {
+              "description": "League not found"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        },
+        "put": {
+          "summary": "Update a league by ID",
+          "tags": ["Leagues"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "integer",
+              "description": "League ID"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description":"League object that needs to be updated",
+                "required": true,
+                "schema": {
+                  "$ref": "#/definitions/LeagueInput"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "League updated successfully",
+                "schema": {
+                  "$ref": "#/definitions/League"
+                }
+              },
+              "404": {
+                "description": "League not found"
+              },
+              "500": {
+                "description": "Internal server error"
+              }
+            }
+          },
+          "delete": {
+            "summary": "Delete a league by ID",
+            "tags": ["Leagues"],
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "type": "integer",
+                "description": "League ID"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "League deleted successfully"
+              },
+              "404": {
+                "description": "League not found"
+              },
+              "500": {
+                "description": "Internal server error"
+              }
+            }
+          }
+        }
+      },
+      "definitions": {
+        "Player": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "example": 1
+            },
+            "name": {
+              "type": "string",
+              "example": "Player Name"
+            },
+            "teamId": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        },
+        "PlayerInput": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "Player Name"
+            },
+            "teamId": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        },
+        "Team": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "example": 1
+            },
+            "name": {
+              "type": "string",
+              "example": "Team Name"
+            },
+            "leagueId": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        },
+        "TeamInput": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "Team Name"
+            },
+            "leagueId": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        },
+        "League": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "example": 1
+            },
+            "name": {
+              "type": "string",
+              "example": "League Name"
+            }
+          }
+        },
+        "LeagueInput": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "League Name"
+            }
+          }
+        }
+      }
+    }
